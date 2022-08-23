@@ -11,6 +11,7 @@ const userRoutes = require('./user');
 const brandRoutes = require('./brand');
 const itemRoutes = require('./item');
 const transaksiRoutes = require('./transaksi');
+
 route.use('/user', userRoutes);
 route.use('/brand', brandRoutes);
 route.use('/item', itemRoutes);
