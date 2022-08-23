@@ -25,6 +25,10 @@ npx sequelize-cli model:generate --name transaksi --attributes name:string,alama
 | POST   | /item/create      | Melakukan _insertion_ item ke dalam database    |
 | POST   | /item/update/:id  | Melakukan _update_ item ke dalam database       |
 | GET    | /item/delete/:id  | Melakukan _delete_ item di database             |
+| GET    | /user             | Menampilkan semua user yang ada dalam database  |
+| POST   | /user/create      | Melakukan _insertion_ user ke dalam database    |
+| POST   | /user/update/:id  | Melakukan _update_ user ke dalam database       |
+| GET    | /user/delete/:id  | Melakukan _delete_ user di database             |
 
 ### Documentation
 
@@ -174,4 +178,63 @@ localhost:3000/item/delete/2
 
 //res
 1
+```
+
+- GET '/user'
+
+```ssh
+//req
+
+//res
+```
+
+- POST '/user/create'
+
+```ssh
+//req
+localhost:3000/user/create
+{
+    "name" : "udin",
+    "no_hp" : "082123456789",
+    "alamat" : "indonesia"
+}
+
+//res
+{
+    "id": 2,
+    "name": "udin",
+    "no_hp": "082123456789",
+    "alamat": "indonesia",
+    "updatedAt": "2022-08-23T05:10:53.628Z",
+    "createdAt": "2022-08-23T05:10:53.628Z"
+}
+```
+
+- POST '/user/update/:id'
+
+```ssh
+//req
+localhost:3000/user/update/2
+{
+    "name" : "ucup",
+    "no_hp" : "089876543210",
+    "alamat" : "jawa barat"
+}
+
+//res
+{
+    "message": "id 2 has update"
+}
+```
+
+- GET '/user/delete/:id'
+
+```ssh
+//req
+localhost:3000/user/delete/2
+
+//res
+{
+    "message": "id 2 deleted"
+}
 ```
