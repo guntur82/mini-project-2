@@ -15,14 +15,14 @@ class TransaksiController {
 
   static async create(req, res) {
     try {
-      const { name, alamat, tanggal, jumlah, total_harga, itemid } = req.body;
+      const { name, alamat, tanggal, jumlah, total_harga, itemId } = req.body;
       let transaction = await transaksi.create({
         name,
         alamat,
         tanggal,
         jumlah,
         total_harga,
-        itemid,
+        itemId,
       });
 
       res.json(transaction);
@@ -54,7 +54,7 @@ class TransaksiController {
   static async update(req, res) {
     try {
       const id = Number(req.params.id);
-      const { name, alamat, tanggal, jumlah, total_harga, itemid } = req.body;
+      const { name, alamat, tanggal, jumlah, total_harga, itemId } = req.body;
 
       let transaction = await transaksi.update(
         {
@@ -63,7 +63,7 @@ class TransaksiController {
           tanggal,
           jumlah,
           total_harga,
-          itemid,
+          itemId,
         },
         {
           where: { id },
@@ -72,28 +72,11 @@ class TransaksiController {
 
       transaction[0] === 1
         ? res.json({
-            message: `Company id ${id} has been updated!`,
+            message: `id ${id} has been updated!`,
           })
         : res.json({
-            message: `Company ${id} has not been updated`,
+            message: `id ${id} has not been updated`,
           });
-    } catch (err) {
-      res.json(err);
-    }
-  }
-
-  static async info(req, res) {
-    try {
-      const id = +req.params.id;
-
-      let result = await profile.findOne({
-        where: {
-          companyId: id,
-        },
-        include: [company],
-      });
-
-      res.json(result);
     } catch (err) {
       res.json(err);
     }

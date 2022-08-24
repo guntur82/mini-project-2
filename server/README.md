@@ -15,20 +15,24 @@ npx sequelize-cli model:generate --name transaksi --attributes name:string,alama
 
 ### End Point
 
-| Method | Route             | Keterangan                                      |
-| ------ | ----------------- | ----------------------------------------------- |
-| GET    | /brand            | Menampilkan semua brand yang ada dalam database |
-| POST   | /brand/create     | Melakukan _insertion_ brand ke dalam database   |
-| POST   | /brand/update/:id | Melakukan _update_ brand ke dalam database      |
-| GET    | /brand/delete/:id | Melakukan _delete_ brand di database            |
-| GET    | /item             | Menampilkan semua item yang ada dalam database  |
-| POST   | /item/create      | Melakukan _insertion_ item ke dalam database    |
-| POST   | /item/update/:id  | Melakukan _update_ item ke dalam database       |
-| GET    | /item/delete/:id  | Melakukan _delete_ item di database             |
-| GET    | /user             | Menampilkan semua user yang ada dalam database  |
-| POST   | /user/create      | Melakukan _insertion_ user ke dalam database    |
-| POST   | /user/update/:id  | Melakukan _update_ user ke dalam database       |
-| GET    | /user/delete/:id  | Melakukan _delete_ user di database             |
+| Method | Route                 | Keterangan                                          |
+| ------ | --------------------- | --------------------------------------------------- |
+| GET    | /brand                | Menampilkan semua brand yang ada dalam database     |
+| POST   | /brand/create         | Melakukan _insertion_ brand ke dalam database       |
+| POST   | /brand/update/:id     | Melakukan _update_ brand ke dalam database          |
+| GET    | /brand/delete/:id     | Melakukan _delete_ brand di database                |
+| GET    | /item                 | Menampilkan semua item yang ada dalam database      |
+| POST   | /item/create          | Melakukan _insertion_ item ke dalam database        |
+| POST   | /item/update/:id      | Melakukan _update_ item ke dalam database           |
+| GET    | /item/delete/:id      | Melakukan _delete_ item di database                 |
+| GET    | /user                 | Menampilkan semua user yang ada dalam database      |
+| POST   | /user/create          | Melakukan _insertion_ user ke dalam database        |
+| POST   | /user/update/:id      | Melakukan _update_ user ke dalam database           |
+| GET    | /user/delete/:id      | Melakukan _delete_ user di database                 |
+| GET    | /transaksi            | Menampilkan semua transaksi yang ada dalam database |
+| POST   | /transaksi/create     | Melakukan _insertion_ transaksi ke dalam database   |
+| POST   | /transaksi/update/:id | Melakukan _update_ transaksi ke dalam database      |
+| GET    | /transaksi/delete/:id | Melakukan _delete_ transaksi di database            |
 
 ### Documentation
 
@@ -236,5 +240,89 @@ localhost:3000/user/delete/2
 //res
 {
     "message": "id 2 deleted"
+}
+```
+
+- GET '/transaksi'
+
+```ssh
+//req
+localhost:3000/transaksi
+
+//res
+[
+    {
+        "id": 2,
+        "name": "luffy",
+        "alamat": "east blue",
+        "tanggal": "25-08-2022",
+        "jumlah": 2,
+        "total_harga": 10000,
+        "itemId": 1,
+        "createdAt": "2022-08-24T17:50:28.806Z",
+        "updatedAt": "2022-08-24T17:50:28.806Z"
+    }
+]
+```
+
+- POST '/transaksi/create'
+
+```ssh
+//req
+localhost:3000/transaksi/create
+{
+    "name": "luffy",
+    "alamat": "east blue",
+    "tanggal": "25-08-2022",
+    "jumlah" : 2,
+    "total_harga" : 10000,
+    "itemId" : 1
+
+}
+
+//res
+{
+    "id": 2,
+    "name": "luffy",
+    "alamat": "east blue",
+    "tanggal": "25-08-2022",
+    "jumlah": 2,
+    "total_harga": 10000,
+    "itemId": 1,
+    "updatedAt": "2022-08-24T17:50:28.806Z",
+    "createdAt": "2022-08-24T17:50:28.806Z"
+}
+```
+
+- POST '/transaksi/update/:id'
+
+```ssh
+//req
+localhost:3000/transaksi/update/2
+{
+    "name": "mugiwara",
+    "alamat": "new world",
+    "tanggal": "26-08-2022",
+    "jumlah" : 3,
+    "total_harga" : 12000,
+    "itemId" : 1
+
+}
+
+//res
+{
+    "message": "id 2 has been updated!"
+}
+```
+
+- GET '/transaksi/delete/:id '
+
+```ssh
+//req
+localhost:3000/transaksi/delete/2
+
+//res
+{
+    "message": "data from id 2 has been deleted!"
 }
 ```
