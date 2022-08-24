@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "```bash\r npx sequelize-cli model:generate --name user --attributes name:string,no_hp:string,alamat:string",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",

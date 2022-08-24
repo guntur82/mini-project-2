@@ -1,7 +1,23 @@
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
+import { MainContent, Home, User } from './components';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  return <div className="App">test</div>;
+  return (
+    <div className="main-page container-fluid">
+      <Routes>
+        <Route path="" element={<Home />}></Route>
+        <Route path="main" element={<MainContent />}>
+          <Route path="distributor"></Route>
+          <Route path="brand"></Route>
+          <Route path="item"></Route>
+        </Route>
+        <Route path="user" element={<User />}></Route>
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
