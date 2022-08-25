@@ -30,14 +30,14 @@ const addBrand = async (data) => {
 };
 const editBrand = async (id, data) => {
   try {
-    let result = await axios({
+    await axios({
       method: 'PUT',
       url: URL + '/update/' + id,
       data: data,
     });
     Swal.fire(
       'Edit Brand',
-      'Brand ' + result.data.name + ' has been update',
+      'Brand ' + data.name + ' has been update',
       'success'
     );
   } catch (error) {

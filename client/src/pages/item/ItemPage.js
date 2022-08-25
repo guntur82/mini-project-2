@@ -7,7 +7,6 @@ const ItemPage = () => {
       <div className="w-100 my-3 text-center">
         <div className="flex">
           <h3>Item</h3>
-          <p>Item list</p>
         </div>
       </div>
       <Outlet />

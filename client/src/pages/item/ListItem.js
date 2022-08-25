@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiPlusSquare } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import LoadingBar from '../../helpers/LoadingBar';
+import { getData, deleteItem } from '../../axios/itemAxios';
 
 const ListItem = () => {
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    getData((result) => setItems(result));
+  });
+  const deleteHandler = (id) => {
+    deleteItem(id);
+  };
   return (
     <div className="row my-3 text-center">
       <div className="col-9 mx-auto">
         <div className="w-100">
-          <Link to="#" className="btn btn-sm btn-primary my-2">
+          <Link to="/main/item/create" className="btn btn-sm btn-primary my-2">
             <span className="me-2">
               <FiPlusSquare></FiPlusSquare>
             </span>
@@ -30,7 +38,38 @@ const ListItem = () => {
               </tr>
             </thead>
             <tbody>
-              <LoadingBar />
+              {items.length > 0 ? (
+                items.map((item, key) => {
+                  const { id, name, harga, gambar, stock } = item;
+                  return (
+                    <tr key={id}>
+                      <td>{key + 1}</td>
+                      <td>{name}</td>
+                      <td>{harga}</td>
+                      <td>{gambar}</td>
+                      <td>{stock}</td>
+                      <td>{item.user ? item.user.name : '-'}</td>
+                      <td>{item.brand ? item.brand.name : '-'}</td>
+                      <td>
+                        <Link
+                          to={`/main/item/edit/${id}`}
+                          className="btn btn-sm btn-info"
+                        >
+                          Edit
+                        </Link>
+                        <button
+                          onClick={() => deleteHandler(+id)}
+                          className="btn btn-sm btn-danger"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <LoadingBar />
+              )}
             </tbody>
           </table>
         </div>

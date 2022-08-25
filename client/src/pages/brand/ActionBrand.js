@@ -30,7 +30,7 @@ const ActionBrand = () => {
     <>
       <div className="row my-3">
         <div className="w-100 text-center">
-          <h5>Create Lecturer</h5>
+          <h5>{id ? 'Edit Brand' : 'Create Brand'}</h5>
         </div>
         <div className="w-50 mx-auto">
           <hr />

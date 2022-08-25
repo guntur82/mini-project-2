@@ -1,9 +1,9 @@
-const { item } = require('../models');
+const { item, brand, user } = require('../models');
 
 class ItemController {
   static async getData(req, res) {
     try {
-      let result = await item.findAll();
+      let result = await item.findAll({ include: [brand, user] });
       res.json(result);
     } catch (error) {
       res.json('err = ' + error);
@@ -56,6 +56,16 @@ class ItemController {
       res.json(result);
     } catch (error) {
       res.json('err = ' + error);
+    }
+  }
+
+  static async getInformation(req, res) {
+    try {
+      const id = +req.params.id;
+      let result = await item.findByPk(id);
+      res.json(result);
+    } catch (error) {
+      res.json(error);
     }
   }
 }

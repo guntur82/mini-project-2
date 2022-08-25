@@ -4,7 +4,7 @@ const LoadingBar = () => {
   return (
     <>
       <tr>
-        <td colSpan="6">LoadingBar</td>
+        <td colSpan="10">LoadingBar</td>
       </tr>
     </>
   );

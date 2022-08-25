@@ -19,6 +19,9 @@ function App() {
           </Route>
           <Route path="item">
             <Route path="create"></Route>
+            <Route path="edit">
+              <Route path=":id"></Route>
+            </Route>
           </Route>
         </Route>
         <Route path="user" element={<User />}></Route>

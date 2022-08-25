@@ -7,7 +7,6 @@ const BrandPage = () => {
       <div className="w-100 my-3 text-center">
         <div className="flex">
           <h3>Brand</h3>
-          <p>Brand list</p>
         </div>
       </div>
       <Outlet />

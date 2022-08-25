@@ -9,6 +9,7 @@ import {
   ListBrand,
   ListItem,
   ActionBrand,
+  ActionItem,
 } from '../../pages';
 import { NavbarMenu, Banner } from '../index';
 
@@ -34,10 +35,9 @@ const MainContent = () => {
         </Route>
         <Route path="item" element={<ItemPage />}>
           <Route path="" element={<ListItem />}></Route>
-          <Route path="" element={<ListItem />}></Route>
-          <Route path="create" element={<ListItem />}></Route>
+          <Route path="create" element={<ActionItem />}></Route>
           <Route path="edit">
-            <Route path=":id" element={<ListItem />}></Route>
+            <Route path=":id" element={<ActionItem />}></Route>
           </Route>
           <Route path="delete">
             <Route path=":id" element={<ListItem />}></Route>

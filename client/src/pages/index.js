@@ -16,6 +16,7 @@ import ActionBrand from './brand/ActionBrand';
 // item
 import ItemPage from './item/ItemPage';
 import ListItem from './item/ListItem';
+import ActionItem from './item/ActionItem';
 
 export {
   HomePage,
@@ -28,4 +29,5 @@ export {
   ListBrand,
   ListItem,
   ActionBrand,
+  ActionItem,
 };
