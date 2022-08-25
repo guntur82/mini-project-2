@@ -11,8 +11,15 @@ function App() {
         <Route path="" element={<Home />}></Route>
         <Route path="main" element={<MainContent />}>
           <Route path="distributor"></Route>
-          <Route path="brand"></Route>
-          <Route path="item"></Route>
+          <Route path="brand">
+            <Route path="create"></Route>
+            <Route path="edit">
+              <Route path=":id"></Route>
+            </Route>
+          </Route>
+          <Route path="item">
+            <Route path="create"></Route>
+          </Route>
         </Route>
         <Route path="user" element={<User />}></Route>
       </Routes>

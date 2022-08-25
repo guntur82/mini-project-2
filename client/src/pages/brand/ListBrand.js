@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiPlusSquare } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import LoadingBar from '../../helpers/LoadingBar';
+import { getData, deleteBrand } from '../../axios/brandAxios';
 
 const ListBrand = () => {
+  const [brands, setBrands] = useState([]);
+  useEffect(() => {
+    getData((result) => setBrands(result));
+  });
+  const deleteHandler = (id) => {
+    deleteBrand(id);
+  };
   return (
     <>
       <div className="row my-3 text-center">
         <div className="col-9 mx-auto">
           <div className="w-100">
-            <button to="#" className="btn btn-sm btn-primary my-2">
+            <Link
+              to="/main/brand/create"
+              className="btn btn-sm btn-primary my-2"
+            >
               <span className="me-2">
                 <FiPlusSquare></FiPlusSquare>
               </span>
               Add Brand
-            </button>
+            </Link>
           </div>
           <div className="w-100">
             <table className="table table-border">
@@ -27,7 +39,35 @@ const ListBrand = () => {
                 </tr>
               </thead>
               <tbody>
-                <LoadingBar />
+                {brands.length > 0 ? (
+                  brands.map((brand, key) => {
+                    const { id, name, homepage, logo } = brand;
+                    return (
+                      <tr key={id}>
+                        <td>{key + 1}</td>
+                        <td>{name}</td>
+                        <td>{homepage}</td>
+                        <td>{logo}</td>
+                        <td>
+                          <Link
+                            to={`/main/brand/edit/${id}`}
+                            className="btn btn-sm btn-info"
+                          >
+                            Edit
+                          </Link>
+                          <button
+                            onClick={() => deleteHandler(+id)}
+                            className="btn btn-sm btn-danger"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <LoadingBar />
+                )}
               </tbody>
             </table>
           </div>

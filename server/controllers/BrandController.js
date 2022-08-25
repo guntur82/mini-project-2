@@ -51,6 +51,15 @@ class BrandController {
       res.json('err = ' + error);
     }
   }
+  static async getInformation(req, res) {
+    try {
+      const id = +req.params.id;
+      let result = await brand.findByPk(id);
+      res.json(result);
+    } catch (error) {
+      res.json(error);
+    }
+  }
 }
 
 module.exports = BrandController;

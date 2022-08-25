@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiPlusSquare } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import LoadingBar from '../../helpers/LoadingBar';
 
 const ListItem = () => {
@@ -7,12 +8,12 @@ const ListItem = () => {
     <div className="row my-3 text-center">
       <div className="col-9 mx-auto">
         <div className="w-100">
-          <button to="#" className="btn btn-sm btn-primary my-2">
+          <Link to="#" className="btn btn-sm btn-primary my-2">
             <span className="me-2">
               <FiPlusSquare></FiPlusSquare>
             </span>
             Add Item
-          </button>
+          </Link>
         </div>
         <div className="w-100">
           <table className="table table-border">

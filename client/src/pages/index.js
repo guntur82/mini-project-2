@@ -12,6 +12,7 @@ import ListDistributor from './distributor/ListDistributor';
 // brand
 import BrandPage from './brand/BrandPage';
 import ListBrand from './brand/ListBrand';
+import ActionBrand from './brand/ActionBrand';
 // item
 import ItemPage from './item/ItemPage';
 import ListItem from './item/ListItem';
@@ -26,4 +27,5 @@ export {
   ListDistributor,
   ListBrand,
   ListItem,
+  ActionBrand,
 };
