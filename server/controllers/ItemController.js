@@ -1,9 +1,12 @@
 const { item, brand, user } = require('../models');
-
+const fs = require('fs');
 class ItemController {
   static async getData(req, res) {
     try {
-      let result = await item.findAll({ include: [brand, user] });
+      let result = await item.findAll({
+        include: [brand, user],
+        order: [['id', 'asc']],
+      });
       res.json(result);
     } catch (error) {
       res.json('err = ' + error);
@@ -29,11 +32,24 @@ class ItemController {
     try {
       const id = req.params.id;
       const { name, harga, gambar, stock, userId, brandId } = req.body;
+      let exist = await item.findByPk(id);
+      let image = '';
+      if (gambar !== '') {
+        if (fs.existsSync(`${__dirname}/../public/uploads/${exist.gambar}`)) {
+          fs.unlink(`${__dirname}/../public/uploads/${exist.gambar}`, (err) => {
+            if (err) throw err;
+            console.log('file has been deleted');
+          });
+        }
+        image = gambar;
+      } else {
+        image = exist.gambar;
+      }
       let result = await item.update(
         {
           name,
           harga,
-          gambar,
+          gambar: image,
           stock,
           userId,
           brandId,
@@ -50,6 +66,13 @@ class ItemController {
   static async delete(req, res) {
     try {
       const id = req.params.id;
+      let exist = await item.findByPk(id);
+      if (fs.existsSync(`${__dirname}/../public/uploads/${exist.gambar}`)) {
+        fs.unlink(`${__dirname}/../public/uploads/${exist.gambar}`, (err) => {
+          if (err) throw err;
+          console.log('file has been deleted');
+        });
+      }
       let result = await item.destroy({
         where: { id },
       });

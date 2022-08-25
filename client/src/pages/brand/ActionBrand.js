@@ -9,6 +9,13 @@ const ActionBrand = () => {
     logo: '',
   });
   const params = useParams();
+  const [img, setImg] = useState();
+  const onImageChange = (e) => {
+    const [file] = e.target.files;
+    file.isUploading = true;
+    setImg({ preview: URL.createObjectURL(file), file: file });
+    setForm({ ...form, logo: file.name });
+  };
   const { id } = params;
   useEffect(() => {
     if (id) {
@@ -22,8 +29,9 @@ const ActionBrand = () => {
     }
   }, []);
   const navigation = useNavigate();
+  let picture = img ? img.file : '';
   const submitHandler = () => {
-    id ? editBrand(id, form) : addBrand(form);
+    id ? editBrand(id, form, picture) : addBrand(form, picture);
     navigation('/main/brand');
   };
   return (
@@ -55,11 +63,15 @@ const ActionBrand = () => {
           <div className="mb-3">
             <label>logo :</label>
             <input
-              value={form.logo}
-              //   onChange={this.onFileChange}
-              onChange={(e) => setForm({ ...form, logo: e.target.value })}
-              type="text"
+              onChange={onImageChange}
+              type="file"
               className="form-control"
+            />
+            <img
+              src={img ? img.preview : ''}
+              className="img-thumbnail"
+              width={img ? '200' : 0}
+              height={img ? '200' : 0}
             />
           </div>
           <div>

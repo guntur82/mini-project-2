@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-
 const URL = 'http://localhost:3000/user';
 
 const getUser = async (cb) => {
@@ -32,18 +31,15 @@ const addUser = async (data) => {
     console.log(error);
   }
 };
-const editUser= async (id, data) => {
+
+const editUser = async (id, data) => {
   try {
     await axios({
       method: 'PUT',
       url: URL + '/update/' + id,
       data: data,
     });
-    Swal.fire(
-      'Edit user',
-      'User ' + data.name + ' has been update',
-      'success'
-    );
+    Swal.fire('Edit user', 'User ' + data.name + ' has been update', 'success');
   } catch (error) {
     console.log(error);
   }
@@ -86,6 +82,5 @@ const informationUser = async (id, cb) => {
     console.log(error);
   }
 };
-
 
 export { getUser, addUser, editUser, deleteUser, informationUser };

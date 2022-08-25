@@ -1,8 +1,11 @@
 const { brand } = require('../models');
+const fs = require('fs');
 class BrandController {
   static async getData(req, res) {
     try {
-      let result = await brand.findAll();
+      let result = await brand.findAll({
+        order: [['id', 'asc']],
+      });
       res.json(result);
     } catch (error) {
       res.json('err = ' + error);
@@ -25,11 +28,24 @@ class BrandController {
     try {
       const id = req.params.id;
       const { name, homepage, logo } = req.body;
+      let exist = await brand.findByPk(id);
+      let gambar = '';
+      if (logo !== '') {
+        if (fs.existsSync(`${__dirname}/../public/uploads/${exist.logo}`)) {
+          fs.unlink(`${__dirname}/../public/uploads/${exist.logo}`, (err) => {
+            if (err) throw err;
+            console.log('file has been deleted');
+          });
+        }
+        gambar = logo;
+      } else {
+        gambar = exist.logo;
+      }
       let result = await brand.update(
         {
           name,
           homepage,
-          logo,
+          logo: gambar,
         },
         {
           where: { id },
@@ -43,6 +59,13 @@ class BrandController {
   static async delete(req, res) {
     try {
       const id = req.params.id;
+      let exist = await brand.findByPk(id);
+      if (fs.existsSync(`${__dirname}/../public/uploads/${exist.logo}`)) {
+        fs.unlink(`${__dirname}/../public/uploads/${exist.logo}`, (err) => {
+          if (err) throw err;
+          console.log('file has been deleted');
+        });
+      }
       let result = await brand.destroy({
         where: { id },
       });

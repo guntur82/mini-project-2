@@ -5,6 +5,7 @@ import LoadingBar from '../../helpers/LoadingBar';
 import { getData, deleteBrand } from '../../axios/brandAxios';
 
 const ListBrand = () => {
+  const API_img = 'http://localhost:3000/uploads/';
   const [brands, setBrands] = useState([]);
   useEffect(() => {
     getData((result) => setBrands(result));
@@ -47,7 +48,14 @@ const ListBrand = () => {
                         <td>{key + 1}</td>
                         <td>{name}</td>
                         <td>{homepage}</td>
-                        <td>{logo}</td>
+                        <td>
+                          <img
+                            src={logo ? API_img + logo : ''}
+                            className="img-thumbnail"
+                            width={logo ? '100' : 0}
+                            height={logo ? '100' : 0}
+                          />
+                        </td>
                         <td>
                           <Link
                             to={`/main/brand/edit/${id}`}

@@ -22,32 +22,30 @@ const HomePage = () => {
           <div className="row">
             <div className="card">
               <div className="card-body">
-                <form method="POST" action="#" enctype="multipart/form-data">
-                  <div className="home-title">
-                    <h5>Keltwoe Ponsel Apps</h5>
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="name"
-                      name="name"
-                      placeholder="Nama Pelanggan..."
-                    />
-                  </div>
-                  <button
-                    onClick={() => submitHandler()}
-                    className="my-3 btn btn-primary btn-user btn-block"
-                  >
-                    Pesan
+                <div className="home-title">
+                  <h5>Keltwoe Ponsel Apps</h5>
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Nama Pelanggan..."
+                  />
+                </div>
+                <button
+                  onClick={() => submitHandler()}
+                  className="my-3 btn btn-primary btn-user btn-block"
+                >
+                  Pesan
+                </button>
+                <hr />
+                <div className="text-center">
+                  <button onClick={() => mainHandler()} className="small">
+                    Masuk sebagai staff
                   </button>
-                  <hr />
-                  <div className="text-center">
-                    <button onClick={() => mainHandler()} className="small">
-                      Masuk sebagai staff
-                    </button>
-                  </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>

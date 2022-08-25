@@ -1,6 +1,9 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+
 const URL = 'http://localhost:3000/brand';
+const URL_upload = 'http://localhost:3000/upload';
+
 const getData = async (cb) => {
   try {
     let brand = await axios({
@@ -12,34 +15,66 @@ const getData = async (cb) => {
     console.log(error);
   }
 };
-const addBrand = async (data) => {
+
+const uploadImage = async (img, cb) => {
   try {
-    let result = await axios({
-      method: 'POST',
-      url: URL + '/create',
-      data: data,
-    });
-    Swal.fire(
-      'Add Brand',
-      'Brand ' + result.data.name + ' has been addes',
-      'success'
-    );
+    if (img) {
+      let formData = new FormData();
+      formData.append('picture', img);
+      fetch(URL_upload, {
+        method: 'POST',
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.status === 'success') {
+            console.log('URL SHOW = ' + result.image);
+            cb(result.name);
+          }
+        });
+    } else {
+      cb('');
+    }
   } catch (error) {
     console.log(error);
   }
 };
-const editBrand = async (id, data) => {
+
+const addBrand = async (data, img) => {
   try {
-    await axios({
-      method: 'PUT',
-      url: URL + '/update/' + id,
-      data: data,
+    uploadImage(img, async (cb) => {
+      data.logo = cb;
+      let result = await axios({
+        method: 'POST',
+        url: URL + '/create',
+        data: data,
+      });
+      Swal.fire(
+        'Add Brand',
+        'Brand ' + result.data.name + ' has been addes',
+        'success'
+      );
     });
-    Swal.fire(
-      'Edit Brand',
-      'Brand ' + data.name + ' has been update',
-      'success'
-    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+const editBrand = async (id, data, img) => {
+  try {
+    uploadImage(img, async (cb) => {
+      data.logo = cb;
+      let result = await axios({
+        method: 'PUT',
+        url: URL + '/update/' + id,
+        data: data,
+      });
+      console.log(result.data);
+      Swal.fire(
+        'Edit Brand',
+        'Brand ' + data.name + ' has been update',
+        'success'
+      );
+    });
   } catch (error) {
     console.log(error);
   }

@@ -2,7 +2,9 @@ const { user } = require('../models');
 class UserController {
   static async getUser(req, res) {
     try {
-      let result = await user.findAll();
+      let result = await user.findAll({
+        order: [['id', 'asc']],
+      });
       res.json(result);
     } catch (error) {
       res.json(error);
@@ -68,6 +70,16 @@ class UserController {
           });
     } catch (err) {
       res.json(err);
+    }
+  }
+
+  static async getInformation(req, res) {
+    try {
+      const id = +req.params.id;
+      let result = await user.findByPk(id);
+      res.json(result);
+    } catch (error) {
+      res.json(error);
     }
   }
 }
