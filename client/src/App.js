@@ -10,7 +10,12 @@ function App() {
       <Routes>
         <Route path="" element={<Home />}></Route>
         <Route path="main" element={<MainContent />}>
-          <Route path="distributor"></Route>
+          <Route path="distributor">
+          <Route path="create"></Route>
+            <Route path="edit">
+              <Route path=":id"></Route>
+            </Route>
+          </Route>
           <Route path="brand">
             <Route path="create"></Route>
             <Route path="edit">

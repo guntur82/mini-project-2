@@ -3,7 +3,7 @@ const { UserController } = require('../controllers');
 
 userRoutes.get('/',UserController.getUser)
 userRoutes.post('/create',UserController.createUser)
-userRoutes.post('/update/:id',UserController.updateUser)
-userRoutes.get('/delete/:id',UserController.deleteUser)
+userRoutes.put('/update/:id',UserController.updateUser)// post gnti jadi put
+userRoutes.delete('/delete/:id',UserController.deleteUser)// get ganti jadi delete
 
 module.exports = userRoutes;
