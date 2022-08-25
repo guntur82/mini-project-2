@@ -7,8 +7,10 @@ import UserPage from './UserPage';
 import HomePage from './HomePage';
 
 // distributor(user)
+import ActionDistributor from './distributor/ActionDistributor';
 import DistributorPage from './distributor/DistributorPage';
 import ListDistributor from './distributor/ListDistributor';
+
 // brand
 import BrandPage from './brand/BrandPage';
 import ListBrand from './brand/ListBrand';
@@ -28,6 +30,7 @@ export {
   ListDistributor,
   ListBrand,
   ListItem,
+  ActionDistributor,
   ActionBrand,
   ActionItem,
 };

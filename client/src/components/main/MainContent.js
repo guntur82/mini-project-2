@@ -8,6 +8,7 @@ import {
   ListDistributor,
   ListBrand,
   ListItem,
+  ActionDistributor,
   ActionBrand,
   ActionItem,
 } from '../../pages';
@@ -22,6 +23,13 @@ const MainContent = () => {
         <Route path="" element={<MainPage />} />
         <Route path="distributor" element={<DistributorPage />}>
           <Route path="" element={<ListDistributor />}></Route>
+          <Route path="create" element={<ActionDistributor />}></Route>
+          <Route path="edit">
+            <Route path=":id" element={<ActionDistributor />}></Route>
+          </Route>
+          <Route path="delete">
+            <Route path=":id" element={<ListDistributor/>}></Route>
+          </Route>
         </Route>
         <Route path="brand" element={<BrandPage />}>
           <Route path="" element={<ListBrand />}></Route>
