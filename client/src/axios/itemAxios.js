@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 
 const URL = 'http://localhost:3000/item';
 const URL_upload = 'http://localhost:3000/upload';
-
 const getData = async (cb) => {
   try {
     let item = await axios({
@@ -49,11 +48,19 @@ const addItem = async (data, img) => {
         url: URL + '/create',
         data: data,
       });
-      Swal.fire(
-        'Add Item',
-        'Item ' + result.data.name + ' has been addes',
-        'success'
-      );
+      if (result.data === 'success') {
+        Swal.fire(
+          'Add Item',
+          'Item ' + result.data.name + ' has been addes',
+          'success'
+        );
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Fail to add Item',
+        });
+      }
     });
   } catch (error) {
     console.log(error);
@@ -64,16 +71,24 @@ const editItem = async (id, data, img) => {
   try {
     uploadImage(img, async (cb) => {
       data.gambar = cb;
-      await axios({
+      let result = await axios({
         method: 'PUT',
         url: URL + '/update/' + id,
         data: data,
       });
-      Swal.fire(
-        'Edit Item',
-        'Item ' + data.name + ' has been update',
-        'success'
-      );
+      if (result.data === 'success') {
+        Swal.fire(
+          'Edit Item',
+          'Item ' + data.name + ' has been update',
+          'success'
+        );
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Fail to update Item',
+        });
+      }
     });
   } catch (error) {
     console.log(error);
@@ -93,11 +108,19 @@ const deleteItem = async (id) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         // di routenya /delete from "get" to "delete" karena udh pake axios
-        await axios({
+        let result = await axios({
           method: 'DELETE',
           url: URL + '/delete/' + id,
         });
-        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        if (result.data === 'success') {
+          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Fail to delete Item',
+          });
+        }
         // window.location.reload();
       }
     });

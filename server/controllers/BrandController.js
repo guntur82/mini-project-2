@@ -11,7 +11,7 @@ class BrandController {
       res.json('err = ' + error);
     }
   }
-  static async craete(req, res) {
+  static async create(req, res) {
     try {
       const { name, homepage, logo } = req.body;
       let result = await brand.create({
@@ -19,7 +19,8 @@ class BrandController {
         homepage,
         logo,
       });
-      res.json(result);
+      res.json('success');
+      // res.json(result);
     } catch (error) {
       res.json('err = ' + error);
     }
@@ -32,8 +33,7 @@ class BrandController {
       let gambar = '';
       if (logo !== '') {
         if (fs.existsSync(`${__dirname}/../public/uploads/${exist.logo}`)) {
-          fs.unlink(`${__dirname}/../public/uploads/${exist.logo}`, (err) => {
-            if (err) throw err;
+          fs.unlink(`${__dirname}/../public/uploads/${exist.logo}`, () => {
             console.log('file has been deleted');
           });
         }
@@ -51,7 +51,8 @@ class BrandController {
           where: { id },
         }
       );
-      res.json(result);
+      res.json('success');
+      // res.json(result);
     } catch (error) {
       res.json('err = ' + error);
     }
@@ -61,15 +62,15 @@ class BrandController {
       const id = req.params.id;
       let exist = await brand.findByPk(id);
       if (fs.existsSync(`${__dirname}/../public/uploads/${exist.logo}`)) {
-        fs.unlink(`${__dirname}/../public/uploads/${exist.logo}`, (err) => {
-          if (err) throw err;
+        fs.unlink(`${__dirname}/../public/uploads/${exist.logo}`, () => {
           console.log('file has been deleted');
         });
       }
       let result = await brand.destroy({
         where: { id },
       });
-      res.json(result);
+      res.json('success');
+      // res.json(result);
     } catch (error) {
       res.json('err = ' + error);
     }

@@ -40,7 +40,6 @@ app.post('/upload', upload.single('picture'), (req, res) => {
     name: req.file.filename,
   });
 });
-// app.delete('/upload');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

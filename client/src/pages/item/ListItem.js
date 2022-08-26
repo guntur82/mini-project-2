@@ -5,6 +5,7 @@ import LoadingBar from '../../helpers/LoadingBar';
 import { getData, deleteItem } from '../../axios/itemAxios';
 
 const ListItem = () => {
+  const API_img = 'http://localhost:3000/uploads/';
   const [items, setItems] = useState([]);
   useEffect(() => {
     getData((result) => setItems(result));
@@ -46,7 +47,14 @@ const ListItem = () => {
                       <td>{key + 1}</td>
                       <td>{name}</td>
                       <td>{harga}</td>
-                      <td>{gambar}</td>
+                      <td>
+                        <img
+                          src={gambar ? API_img + gambar : ''}
+                          className="img-thumbnail"
+                          width={gambar ? '100' : 0}
+                          height={gambar ? '100' : 0}
+                        />
+                      </td>
                       <td>{stock}</td>
                       <td>{item.user ? item.user.name : '-'}</td>
                       <td>{item.brand ? item.brand.name : '-'}</td>

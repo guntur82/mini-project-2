@@ -12,7 +12,7 @@ class ItemController {
       res.json('err = ' + error);
     }
   }
-  static async craete(req, res) {
+  static async create(req, res) {
     try {
       const { name, harga, gambar, stock, userId, brandId } = req.body;
       let result = await item.create({
@@ -23,9 +23,10 @@ class ItemController {
         userId,
         brandId,
       });
-      res.json(result);
+      // res.json(result);
+      res.json('success');
     } catch (error) {
-      res.json('err = ' + error);
+      res.json(error);
     }
   }
   static async update(req, res) {
@@ -36,8 +37,7 @@ class ItemController {
       let image = '';
       if (gambar !== '') {
         if (fs.existsSync(`${__dirname}/../public/uploads/${exist.gambar}`)) {
-          fs.unlink(`${__dirname}/../public/uploads/${exist.gambar}`, (err) => {
-            if (err) throw err;
+          fs.unlink(`${__dirname}/../public/uploads/${exist.gambar}`, () => {
             console.log('file has been deleted');
           });
         }
@@ -58,7 +58,8 @@ class ItemController {
           where: { id },
         }
       );
-      res.json(result);
+      // res.json(result);
+      res.json('success');
     } catch (error) {
       res.json('err = ' + error);
     }
@@ -68,15 +69,15 @@ class ItemController {
       const id = req.params.id;
       let exist = await item.findByPk(id);
       if (fs.existsSync(`${__dirname}/../public/uploads/${exist.gambar}`)) {
-        fs.unlink(`${__dirname}/../public/uploads/${exist.gambar}`, (err) => {
-          if (err) throw err;
+        fs.unlink(`${__dirname}/../public/uploads/${exist.gambar}`, () => {
           console.log('file has been deleted');
         });
       }
       let result = await item.destroy({
         where: { id },
       });
-      res.json(result);
+      // res.json(result);
+      res.json('success');
     } catch (error) {
       res.json('err = ' + error);
     }
