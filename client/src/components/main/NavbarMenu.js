@@ -41,6 +41,11 @@ const NavbarMenu = () => {
                   Item
                 </Link>
               </li>
+              <li className="nav-Transaksi">
+                <Link className="nav-link" to="/main/transaction">
+                  Transaction
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/">
                   Exit

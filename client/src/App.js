@@ -28,6 +28,12 @@ function App() {
               <Route path=":id"></Route>
             </Route>
           </Route>
+          <Route path="Transaction">
+            <Route path="create"></Route>
+            <Route path="edit">
+              <Route path=":id"></Route>
+            </Route>
+          </Route>
         </Route>
         <Route path="user" element={<User />}></Route>
       </Routes>
