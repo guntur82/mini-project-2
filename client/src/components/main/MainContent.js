@@ -5,12 +5,15 @@ import {
   DistributorPage,
   BrandPage,
   ItemPage,
+  TransactionPage,
   ListDistributor,
   ListBrand,
   ListItem,
+  ListTransaction,
   ActionDistributor,
   ActionBrand,
   ActionItem,
+  ActionTransaction,
 } from '../../pages';
 import { NavbarMenu, Banner } from '../index';
 
@@ -49,6 +52,16 @@ const MainContent = () => {
           </Route>
           <Route path="delete">
             <Route path=":id" element={<ListItem />}></Route>
+          </Route>
+        </Route>
+        <Route path="transaction" element={<TransactionPage />}>
+          <Route path="" element={<ListTransaction />}></Route>
+          <Route path="create" element={<ActionTransaction />}></Route>
+          <Route path="edit">
+            <Route path=":id" element={<ActionTransaction />}></Route>
+          </Route>
+          <Route path="delete">
+            <Route path=":id" element={<ListTransaction />}></Route>
           </Route>
         </Route>
       </Routes>

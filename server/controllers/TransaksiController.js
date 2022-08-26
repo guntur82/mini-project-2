@@ -81,6 +81,16 @@ class TransaksiController {
       res.json(err);
     }
   }
+
+  static async information(req, res) {
+    try {
+      const id = +req.params.id;
+      let transaction = await transaksi.findByPk(id);
+      res.json(transaction);
+    } catch (error) {
+      res.json(error);
+    }
+  }
 }
 
 module.exports = TransaksiController;
