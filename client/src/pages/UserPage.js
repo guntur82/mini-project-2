@@ -62,7 +62,7 @@ const UserPage = () => {
                       <div className="home-icons">
                         <img
                           src={gambar ? API_img + gambar : ''}
-                          className="img-thumbnail"
+                          className="img-responsive"
                           width={gambar ? '200' : 0}
                           height={gambar ? '200' : 0}
                         />
