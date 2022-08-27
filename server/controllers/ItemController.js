@@ -12,6 +12,18 @@ class ItemController {
       res.json('err = ' + error);
     }
   }
+  static async filter(req, res) {
+    try {
+      let { data, order } = req.body;
+      let result = await item.findAll({
+        include: [brand, user],
+        order: [data ? [data, order] : ['name', 'desc']],
+      });
+      res.json(result);
+    } catch (error) {
+      res, json('err = ' + error);
+    }
+  }
   static async create(req, res) {
     try {
       const { name, harga, gambar, stock, userId, brandId } = req.body;

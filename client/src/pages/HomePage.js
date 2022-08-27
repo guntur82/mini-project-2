@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom'; // buat redirect
 
 const HomePage = () => {
+  const [form, setForm] = useState({
+    name: '',
+  });
+  const enterAction = (event) => {
+    if (event.keyCode === 13) {
+      submitHandler();
+    }
+  };
   const navigation = useNavigate();
   const submitHandler = () => {
     // buat redirect
-    navigation('/user');
+    if (form.name) {
+      navigation(`/user/${form.name}`);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please input ur name',
+      });
+    }
   };
   const mainHandler = () => {
     // buat redirect
-    navigation('/main');
+    navigation('/main/');
   };
   return (
     <div className="my-5">
@@ -29,8 +46,8 @@ const HomePage = () => {
                   <input
                     type="text"
                     className="form-control"
-                    id="name"
-                    name="name"
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    onKeyDown={(action) => enterAction(action)}
                     placeholder="Nama Pelanggan..."
                   />
                 </div>

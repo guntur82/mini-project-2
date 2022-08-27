@@ -11,7 +11,7 @@ function App() {
         <Route path="" element={<Home />}></Route>
         <Route path="main" element={<MainContent />}>
           <Route path="distributor">
-          <Route path="create"></Route>
+            <Route path="create"></Route>
             <Route path="edit">
               <Route path=":id"></Route>
             </Route>
@@ -35,7 +35,9 @@ function App() {
             </Route>
           </Route>
         </Route>
-        <Route path="user" element={<User />}></Route>
+        <Route path="user" element={<User />}>
+          <Route path=":name"></Route>
+        </Route>
       </Routes>
     </div>
   );

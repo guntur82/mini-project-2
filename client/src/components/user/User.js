@@ -8,7 +8,9 @@ const User = () => {
       <BannerUser />
       <NavbarMenuUser />
       <Routes>
-        <Route path="" element={<UserPage />}></Route>
+        <Route path="">
+          <Route path=":name" element={<UserPage />}></Route>
+        </Route>
       </Routes>
     </>
   );

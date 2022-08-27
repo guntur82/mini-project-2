@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; // buat redirect
 
 const NavbarMenuUser = () => {
+  const params = useParams();
+  const { name } = params;
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container">
-          <Link className="navbar-brand" to="/user">
+          <Link className="navbar-brand" to={'/user/' + name}>
             Home
           </Link>
           <button

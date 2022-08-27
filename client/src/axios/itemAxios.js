@@ -3,36 +3,21 @@ import Swal from 'sweetalert2';
 
 const URL = 'http://localhost:3000/item';
 const URL_upload = 'http://localhost:3000/upload';
-const getData = async (cb) => {
+const getData = async (cb, filter) => {
   try {
-    let item = await axios({
-      method: 'GET',
-      url: URL,
-    });
-    cb(item.data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const uploadImage = async (img, cb) => {
-  try {
-    if (img) {
-      let formData = new FormData();
-      formData.append('picture', img);
-      fetch(URL_upload, {
-        method: 'POST',
-        body: formData,
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result.status === 'success') {
-            console.log('URL SHOW = ' + result.image);
-            cb(result.name);
-          }
-        });
+    if (filter === undefined) {
+      let item = await axios({
+        method: 'GET',
+        url: URL,
+      });
+      cb(item.data);
     } else {
-      cb('');
+      let item = await axios({
+        method: 'POST',
+        url: URL + '/filter',
+        data: filter,
+      });
+      cb(item.data);
     }
   } catch (error) {
     console.log(error);
@@ -136,6 +121,30 @@ const informationItem = async (id, cb) => {
       url: URL + '/information/' + id,
     });
     cb(result.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const uploadImage = async (img, cb) => {
+  try {
+    if (img) {
+      let formData = new FormData();
+      formData.append('picture', img);
+      fetch(URL_upload, {
+        method: 'POST',
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.status === 'success') {
+            console.log('URL SHOW = ' + result.image);
+            cb(result.name);
+          }
+        });
+    } else {
+      cb('');
+    }
   } catch (error) {
     console.log(error);
   }
