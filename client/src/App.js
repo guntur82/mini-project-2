@@ -8,7 +8,16 @@ function App() {
   return (
     <div className="main-page container-fluid">
       <Routes>
-        <Route path="" element={<Home />}></Route>
+        <Route path="" element={<User />}>
+          <Route path="brand">
+            <Route path="z">
+              <Route path=":id"></Route>
+            </Route>
+          </Route>
+        </Route>
+        <Route path="home" element={<Home />}>
+          <Route path=":status"></Route>
+        </Route>
         <Route path="main" element={<MainContent />}>
           <Route path="distributor">
             <Route path="create"></Route>
@@ -36,7 +45,17 @@ function App() {
           </Route>
         </Route>
         <Route path="user" element={<User />}>
-          <Route path=":name"></Route>
+          <Route path=":name">
+            <Route path="add">
+              <Route path=":id"></Route>
+            </Route>
+          </Route>
+          <Route path="brand">
+            <Route path=":name"></Route>
+            <Route path=":id">
+              <Route path=":name"></Route>
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </div>

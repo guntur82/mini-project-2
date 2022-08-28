@@ -20,7 +20,7 @@ import { NavbarMenu, Banner } from '../index';
 const MainContent = () => {
   return (
     <div className="container p-3">
-      <Banner />
+      {/* <Banner /> */}
       <NavbarMenu />
       <Routes>
         <Route path="" element={<MainPage />} />
@@ -31,7 +31,7 @@ const MainContent = () => {
             <Route path=":id" element={<ActionDistributor />}></Route>
           </Route>
           <Route path="delete">
-            <Route path=":id" element={<ListDistributor/>}></Route>
+            <Route path=":id" element={<ListDistributor />}></Route>
           </Route>
         </Route>
         <Route path="brand" element={<BrandPage />}>

@@ -5,7 +5,9 @@ const Home = () => {
   return (
     <>
       <Routes>
-        <Route path="" element={<HomePage />}></Route>
+        <Route path="" element={<HomePage />}>
+          <Route path=":status"></Route>
+        </Route>
       </Routes>
     </>
   );

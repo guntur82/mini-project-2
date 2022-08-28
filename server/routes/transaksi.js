@@ -3,8 +3,8 @@ const { TransaksiController } = require('../controllers');
 
 transaksiRoutes.get('/', TransaksiController.list);
 transaksiRoutes.post('/create', TransaksiController.create);
-transaksiRoutes.post('/update/:id', TransaksiController.update);
-transaksiRoutes.get('/delete/:id', TransaksiController.delete);
+transaksiRoutes.put('/update/:id', TransaksiController.update);
+transaksiRoutes.delete('/delete/:id', TransaksiController.delete);
 transaksiRoutes.get('/information/:id', TransaksiController.information);
 
 module.exports = transaksiRoutes;

@@ -39,7 +39,11 @@ const editTransaksi = async (id, data) => {
       url: URL + '/update/' + id,
       data: data,
     });
-    Swal.fire('Edit Transaksi ', 'Data dengan Id : ' + data.id + ' has been update', 'success');
+    Swal.fire(
+      'Edit Transaksi ',
+      'Data dengan Id : ' + data.id + ' has been update',
+      'success'
+    );
   } catch (error) {
     console.log(error);
   }
@@ -58,7 +62,7 @@ const deleteTransaksi = async (id) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         // di routenya /delete from "get" to "delete" karena udh pake axios
-        await axios({
+        let result = await axios({
           method: 'DELETE',
           url: URL + '/delete/' + id,
         });
@@ -83,4 +87,10 @@ const informationTransaksi = async (id, cb) => {
   }
 };
 
-export { getTransaksi, addTransaksi, editTransaksi, deleteTransaksi, informationTransaksi };
+export {
+  getTransaksi,
+  addTransaksi,
+  editTransaksi,
+  deleteTransaksi,
+  informationTransaksi,
+};

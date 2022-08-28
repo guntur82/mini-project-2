@@ -1,12 +1,13 @@
 import React from 'react';
+import '../../App.css';
 import { Link } from 'react-router-dom';
 
 const NavbarMenu = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-light">
+      <nav className="main-navbar navbar navbar-expand-lg">
         <div className="container">
-          <Link className="navbar-brand" to="/main">
+          <Link className="navbar-brand main-navbar" to="/main">
             Home
           </Link>
           <button
@@ -47,7 +48,7 @@ const NavbarMenu = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/home">
                   Exit
                 </Link>
               </li>

@@ -1,7 +1,10 @@
 import MainPage from './MainPage';
 
 // pelanggan
-import UserPage from './UserPage';
+import UserPage from './user/UserPage';
+import AddUserPage from './user/AddUserPage';
+import BrandUserPage from './user/BrandUserPage';
+import BrandListUserPage from './user/BrandListUserPage';
 
 // staff
 import HomePage from './HomePage';
@@ -40,4 +43,7 @@ export {
   ActionBrand,
   ActionItem,
   ActionTransaction,
+  AddUserPage,
+  BrandUserPage,
+  BrandListUserPage,
 };

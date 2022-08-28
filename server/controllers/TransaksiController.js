@@ -1,9 +1,10 @@
-const { transaksi } = require('../models');
+const { transaksi, item } = require('../models');
 
 class TransaksiController {
   static async list(req, res) {
     try {
       let transaction = await transaksi.findAll({
+        include: [item],
         order: [['id', 'asc']],
       });
 
@@ -24,7 +25,15 @@ class TransaksiController {
         total_harga,
         itemId,
       });
-
+      let dataItem = await item.findByPk(itemId);
+      let items = await item.update(
+        {
+          stock: dataItem.stock - jumlah,
+        },
+        {
+          where: { id: itemId },
+        }
+      );
       res.json(transaction);
     } catch (err) {
       res.json(err);
@@ -35,6 +44,16 @@ class TransaksiController {
     try {
       const id = +req.params.id;
 
+      let dataTransaction = await transaksi.findByPk(id);
+      let dataItem = await item.findByPk(dataTransaction.itemId);
+      let items = await item.update(
+        {
+          stock: dataItem.stock + dataTransaction.jumlah,
+        },
+        {
+          where: { id: dataTransaction.itemId },
+        }
+      );
       let transaction = await transaksi.destroy({
         where: { id },
       });
