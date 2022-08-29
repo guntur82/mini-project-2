@@ -43,7 +43,7 @@ const AddUserPage = () => {
   }, []);
   const navigation = useNavigate();
   const submitHandler = () => {
-    if (form.jumlah >= item.stock) {
+    if (form.jumlah > item.stock) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
