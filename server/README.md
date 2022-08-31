@@ -1,5 +1,9 @@
 # Keltwoe Ponsel Apps
 
+## Desain ERD
+
+[![Keltwoe Ponsel App][erd-screenshot]](https://example.com)
+
 ## Database
 
 ```bash
@@ -326,3 +330,5 @@ localhost:3000/transaksi/delete/2
     "message": "data from id 2 has been deleted!"
 }
 ```
+
+[erd-screenshot]: public/erd.png
