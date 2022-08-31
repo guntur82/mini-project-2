@@ -27,6 +27,8 @@ body {
 /* desain */
 .main-navbar {
   background-color: #ebf2fa;
+  margin: 0 auto;
+  box-shadow: 0 1px 2px 0 #50595c;
 }
 .btn-color {
   background-color: #0e1c36;
